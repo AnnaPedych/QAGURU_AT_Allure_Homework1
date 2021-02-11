@@ -50,8 +50,7 @@ public class verifyIssueNameAnnotationsTest extends testBase {
 
         @Step("Search for repository {repository}")
         public void searchForRepository(String repository) {
-            $(".header-search-input").setValue(repository).pressEnter();
-        }
+            $(".header-search-input").setValue(repository).pressEnter();}
 
         @Step("Open repository {repository}")
         public void openRepository(String repository) {
@@ -73,14 +72,12 @@ public class verifyIssueNameAnnotationsTest extends testBase {
             $("[role=dialog]").$(withText("Sign in")).click();
             $("[name=login]").setValue(login);
             $("[name=password]").setValue(password);
-            $("[value='Sign in']").click();
-        }
+            $("[value='Sign in']").click();}
 
         @Step("Create issue {issue_name}")
         public void createIssue(String issue_name) {
             $("#issue_title").setValue(issue_name);
-            $(withText("Submit new issue")).click();
-        }
+            $(withText("Submit new issue")).click();}
 
         @Step("Verify issue is created with correct name")
         public void verifyIssueIsCreatedWithCorrectName(final String base_url, String repository, String issue_name) {
@@ -88,7 +85,6 @@ public class verifyIssueNameAnnotationsTest extends testBase {
             $(".header-search-input").setValue(repository).pressEnter();
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();
-            $(withText(issue_name)).should(Condition.exist);
-        }
+            $(withText(issue_name)).should(Condition.exist);}
     }
 }
