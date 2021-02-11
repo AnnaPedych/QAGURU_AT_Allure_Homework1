@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class VerifyIssueNameSelenideTest extends TestBase {
+public class verifyIssueNameSelenideTest extends TestBase {
     Faker faker = new Faker();
     String base_url = "https://github.com/",
             login = "AnnaPedych-testaccount",
@@ -19,7 +19,7 @@ public class VerifyIssueNameSelenideTest extends TestBase {
             issue_name = faker.harryPotter().character();
 
     @Test
-    public void CreateAndCheckIssueTest() {
+    public void createAndCheckIssueTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         //Issue creation
         open(base_url);

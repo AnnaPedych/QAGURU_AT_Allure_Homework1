@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.parameter;
 import static io.qameta.allure.Allure.step;
 
-public class VerifyIssueNameLambdaTest extends TestBase {
+public class verifyIssueNameLambdaTest extends TestBase {
     Faker faker = new Faker();
     private static final String base_url = "https://github.com/";
                          String login = "AnnaPedych-testaccount",
@@ -32,9 +32,9 @@ public class VerifyIssueNameLambdaTest extends TestBase {
 
     @Feature("Issues")
     @Story("Issue creation security")
-    @DisplayName("Issue created with correct name after login")
+    @DisplayName("Issue created after login")
 
-    public void CreateAndCheckIssueTest() {
+    public void createAndCheckIssueTest() {
         parameter("User", login);
         parameter("Repository", repository);
         parameter("Issue name", issue_name);
