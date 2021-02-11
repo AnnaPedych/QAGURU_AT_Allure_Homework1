@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class verifyIssueNameSelenideTest extends TestBase {
+public class verifyIssueNameSelenideTest extends testBase {
     Faker faker = new Faker();
     String base_url = "https://github.com/",
             login = "AnnaPedych-testaccount",
