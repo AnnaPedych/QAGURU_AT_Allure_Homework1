@@ -44,15 +44,15 @@ public class verifyIssueNameLambdaTest extends testBase {
         parameter("Issue name", issue_name);
 
         step("Open main page", () -> open(base_url));
-        step("Search for repository {repository}", () -> {$(".header-search-input").setValue(repository).pressEnter();});
-        step("Open repository {repository}", () -> $(By.linkText(repository)).click());
+        step("Search for repository " + repository, () -> {$(".header-search-input").setValue(repository).pressEnter();});
+        step("Open repository " + repository, () -> $(By.linkText(repository)).click());
         step("Navigate to Issues tab", () -> $(withText("Issues")).click());
         step("Try to create new issue", () -> $(byText("New issue")).click());
         step("Log in via pop-up", () -> {$("[role=dialog]").$(withText("Sign in")).click();
                                     $("[name=login]").setValue(login);
                                     $("[name=password]").setValue(password);
                                     $("[value='Sign in']").click();});
-        step("Create issue {issue_name}", () -> {$("#issue_title").setValue(issue_name);
+        step("Create issue " + issue_name, () -> {$("#issue_title").setValue(issue_name);
                                           $(withText("Submit new issue")).click();});
         step("Verify issue is created with correct name", () -> {open(base_url);
                                                     $(".header-search-input").setValue(repository).pressEnter();
