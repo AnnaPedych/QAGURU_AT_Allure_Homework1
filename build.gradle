@@ -7,11 +7,6 @@ repositories {
     mavenCentral()
 }
 
-compileJava {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
-
 allure {
     autoconfigure = true
     version = '2.13.8'
@@ -24,7 +19,8 @@ dependencies {
     testImplementation("com.codeborne:selenide:5.18.0",
             "org.junit.jupiter:junit-jupiter-api:5.6.2",
             "io.qameta.allure:allure-selenide:2.13.6",
-            "com.github.javafaker:javafaker:1.0.2")
+            "com.github.javafaker:javafaker:1.0.2",
+            'org.aspectj:aspectjtools:1.9.6')
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2",
             'org.slf4j:slf4j-simple:1.7.30')
 }
