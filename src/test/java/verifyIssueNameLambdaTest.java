@@ -22,10 +22,10 @@ import static io.qameta.allure.Allure.step;
 public class verifyIssueNameLambdaTest extends testBase {
     Faker faker = new Faker();
     private static final String base_url = "https://github.com/";
-                         String login = "AnnaPedych-testaccount",
-                                password = "Qaguru123",
-                                repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
-                                issue_name = faker.harryPotter().character();
+    String login = "AnnaPedych-testaccount",
+            password = "Qaguru123",
+            repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
+            issue_name = faker.harryPotter().character();
 
     @Test
     @Owner("AnnaPedych")
@@ -44,20 +44,28 @@ public class verifyIssueNameLambdaTest extends testBase {
         parameter("Issue name", issue_name);
 
         step("Open main page", () -> open(base_url));
-        step("Search for repository " + repository, () -> {$(".header-search-input").setValue(repository).pressEnter();});
+        step("Search for repository " + repository, () -> {
+            $(".header-search-input").setValue(repository).pressEnter();
+        });
         step("Open repository " + repository, () -> $(By.linkText(repository)).click());
         step("Navigate to Issues tab", () -> $(withText("Issues")).click());
         step("Try to create new issue", () -> $(byText("New issue")).click());
-        step("Log in via pop-up", () -> {$("[role=dialog]").$(withText("Sign in")).click();
-                                    $("[name=login]").setValue(login);
-                                    $("[name=password]").setValue(password);
-                                    $("[value='Sign in']").click();});
-        step("Create issue " + issue_name, () -> {$("#issue_title").setValue(issue_name);
-                                          $(withText("Submit new issue")).click();});
-        step("Verify issue is created with correct name", () -> {open(base_url);
-                                                    $(".header-search-input").setValue(repository).pressEnter();
-                                                    $(By.linkText(repository)).click();
-                                                    $(withText("Issues")).click();
-                                                    $(withText(issue_name)).should(Condition.exist);});
+        step("Log in via pop-up", () -> {
+            $("[role=dialog]").$(withText("Sign in")).click();
+            $("[name=login]").setValue(login);
+            $("[name=password]").setValue(password);
+            $("[value='Sign in']").click();
+        });
+        step("Create issue " + issue_name, () -> {
+            $("#issue_title").setValue(issue_name);
+            $(withText("Submit new issue")).click();
+        });
+        step("Verify issue is created with correct name", () -> {
+            open(base_url);
+            $(".header-search-input").setValue(repository).pressEnter();
+            $(By.linkText(repository)).click();
+            $(withText("Issues")).click();
+            $(withText(issue_name)).should(Condition.exist);
+        });
     }
 }
