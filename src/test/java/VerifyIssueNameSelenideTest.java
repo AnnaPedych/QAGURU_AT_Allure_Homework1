@@ -1,7 +1,5 @@
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -20,7 +18,6 @@ public class VerifyIssueNameSelenideTest extends TestBase {
 
     @Test
     public void createAndCheckIssueTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         //Issue creation
         open(base_url);
         $(".header-search-input").setValue(repository).pressEnter();
