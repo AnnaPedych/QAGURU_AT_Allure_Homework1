@@ -7,6 +7,7 @@ public class TestBase {
     @BeforeAll
     static void setup() {
         Configuration.startMaximized = true;
+        Configuration.baseUrl = "https://github.com/";
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 }

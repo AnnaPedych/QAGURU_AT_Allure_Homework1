@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.open;
 public class VerifyIssueNameAnnotationsTest extends TestBase {
 
     Faker faker = new Faker();
-    private static final String base_url = "https://github.com/";
     String login = "AnnaPedych-testaccount",
             password = "Qaguru123",
             repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
@@ -24,7 +23,6 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
     @Test
     @Owner("AnnaPedych")
     @Tags({@Tag("web"), @Tag("homework")})
-    @Link(name = "Base URL", value = base_url)
 
     @Feature("Issues")
     @Story("Issue creation security")
@@ -32,20 +30,20 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
 
     public void createAndCheckIssueTest() {
         final BaseStepsForAnnotationStyle steps = new BaseStepsForAnnotationStyle();
-        steps.openMainPage(base_url);
+        steps.openMainPage();
         steps.searchForRepository(repository);
         steps.openRepository(repository);
         steps.navigateToIssuesTab();
         steps.tryToCreateNewIssue();
         steps.logInViaPopup(login, password);
         steps.createIssue(issueName);
-        steps.verifyIssueIsCreatedWithCorrectName(base_url, repository, issueName);
+        steps.verifyIssueIsCreatedWithCorrectName(repository, issueName);
     }
 
     public static class BaseStepsForAnnotationStyle {
         @Step("Open main page")
-        public void openMainPage(final String base_url) {
-            open(base_url);
+        public void openMainPage() {
+            open(baseUrl);
         }
 
         @Step("Search for repository {repository}")
@@ -80,8 +78,8 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
             $(withText("Submit new issue")).click();}
 
         @Step("Verify issue is created with correct name")
-        public void verifyIssueIsCreatedWithCorrectName(final String base_url, String repository, String issueName) {
-            open(base_url);
+        public void verifyIssueIsCreatedWithCorrectName(String repository, String issueName) {
+            open(baseUrl);
             $(".header-search-input").setValue(repository).pressEnter();
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();

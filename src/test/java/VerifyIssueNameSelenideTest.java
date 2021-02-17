@@ -3,6 +3,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -10,8 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class VerifyIssueNameSelenideTest extends TestBase {
     Faker faker = new Faker();
-    String base_url = "https://github.com/",
-            login = "AnnaPedych-testaccount",
+    String  login = "AnnaPedych-testaccount",
             password = "Qaguru123",
             repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
             issueName = faker.harryPotter().character();
@@ -19,7 +19,7 @@ public class VerifyIssueNameSelenideTest extends TestBase {
     @Test
     public void createAndCheckIssueTest() {
         //Issue creation
-        open(base_url);
+        open(baseUrl);
         $(".header-search-input").setValue(repository).pressEnter();
         $(By.linkText(repository)).click();
         $(withText("Issues")).click();
@@ -31,7 +31,7 @@ public class VerifyIssueNameSelenideTest extends TestBase {
         $("#issue_title").setValue(issueName);
         $(withText("Submit new issue")).click();
         //Issue name verification
-        open(base_url);
+        open(baseUrl);
         $(".header-search-input").setValue(repository).pressEnter();
         $(By.linkText(repository)).click();
         $(withText("Issues")).click();

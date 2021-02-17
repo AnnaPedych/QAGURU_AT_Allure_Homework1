@@ -1,7 +1,6 @@
 import com.codeborne.selenide.Condition;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Link;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -19,7 +19,6 @@ import static io.qameta.allure.Allure.step;
 
 public class VerifyIssueNameLambdaTest extends TestBase {
     Faker faker = new Faker();
-    private static final String base_url = "https://github.com/";
     String login = "AnnaPedych-testaccount",
             password = "Qaguru123",
             repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
@@ -28,7 +27,6 @@ public class VerifyIssueNameLambdaTest extends TestBase {
     @Test
     @Owner("AnnaPedych")
     @Tags({@Tag("web"), @Tag("homework")})
-    @Link(name = "Base URL", value = base_url)
 
     @Feature("Issues")
     @Story("Issue creation security")
@@ -39,7 +37,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
         parameter("Repository", repository);
         parameter("Issue name", issueName);
 
-        step("Open main page", () -> open(base_url));
+        step("Open main page", () -> open(baseUrl));
         step("Search for repository " + repository, () -> {
             $(".header-search-input").setValue(repository).pressEnter();
         });
@@ -57,7 +55,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
             $(withText("Submit new issue")).click();
         });
         step("Verify issue is created with correct name", () -> {
-            open(base_url);
+            open(baseUrl);
             $(".header-search-input").setValue(repository).pressEnter();
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();
