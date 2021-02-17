@@ -65,7 +65,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
             $(".header-search-input").setValue(repository).pressEnter();
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();
-            $(withText(issueName)).should(Condition.exist);
+            $(withText(issueName)).should(Condition.visible);
         });
     }
 }
