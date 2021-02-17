@@ -16,7 +16,7 @@ public class VerifyIssueNameSelenideTest extends TestBase {
             login = "AnnaPedych-testaccount",
             password = "Qaguru123",
             repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
-            issue_name = faker.harryPotter().character();
+            issueName = faker.harryPotter().character();
 
     @Test
     public void createAndCheckIssueTest() {
@@ -31,13 +31,13 @@ public class VerifyIssueNameSelenideTest extends TestBase {
         $("[name=login]").setValue(login);
         $("[name=password]").setValue(password);
         $("[value='Sign in']").click();
-        $("#issue_title").setValue(issue_name);
+        $("#issue_title").setValue(issueName);
         $(withText("Submit new issue")).click();
         //Issue name verification
         open(base_url);
         $(".header-search-input").setValue(repository).pressEnter();
         $(By.linkText(repository)).click();
         $(withText("Issues")).click();
-        $(withText(issue_name)).should(Condition.exist);
+        $(withText(issueName)).should(Condition.exist);
     }
 }

@@ -19,7 +19,7 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
     String login = "AnnaPedych-testaccount",
             password = "Qaguru123",
             repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
-            issue_name = faker.animal().name();
+            issueName = faker.animal().name();
 
     @Test
     @Owner("AnnaPedych")
@@ -38,8 +38,8 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
         steps.navigateToIssuesTab();
         steps.tryToCreateNewIssue();
         steps.logInViaPopup(login, password);
-        steps.createIssue(issue_name);
-        steps.verifyIssueIsCreatedWithCorrectName(base_url, repository, issue_name);
+        steps.createIssue(issueName);
+        steps.verifyIssueIsCreatedWithCorrectName(base_url, repository, issueName);
     }
 
     public static class BaseStepsForAnnotationStyle {
@@ -74,17 +74,17 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
             $("[name=password]").setValue(password);
             $("[value='Sign in']").click();}
 
-        @Step("Create issue {issue_name}")
-        public void createIssue(String issue_name) {
-            $("#issue_title").setValue(issue_name);
+        @Step("Create issue {issueName}")
+        public void createIssue(String issueName) {
+            $("#issue_title").setValue(issueName);
             $(withText("Submit new issue")).click();}
 
         @Step("Verify issue is created with correct name")
-        public void verifyIssueIsCreatedWithCorrectName(final String base_url, String repository, String issue_name) {
+        public void verifyIssueIsCreatedWithCorrectName(final String base_url, String repository, String issueName) {
             open(base_url);
             $(".header-search-input").setValue(repository).pressEnter();
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();
-            $(withText(issue_name)).should(Condition.exist);}
+            $(withText(issueName)).should(Condition.exist);}
     }
 }

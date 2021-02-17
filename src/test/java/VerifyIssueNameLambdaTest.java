@@ -25,7 +25,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
     String login = "AnnaPedych-testaccount",
             password = "Qaguru123",
             repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
-            issue_name = faker.harryPotter().character();
+            issueName = faker.harryPotter().character();
 
     @Test
     @Owner("AnnaPedych")
@@ -41,7 +41,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
 
         parameter("User", login);
         parameter("Repository", repository);
-        parameter("Issue name", issue_name);
+        parameter("Issue name", issueName);
 
         step("Open main page", () -> open(base_url));
         step("Search for repository " + repository, () -> {
@@ -56,8 +56,8 @@ public class VerifyIssueNameLambdaTest extends TestBase {
             $("[name=password]").setValue(password);
             $("[value='Sign in']").click();
         });
-        step("Create issue " + issue_name, () -> {
-            $("#issue_title").setValue(issue_name);
+        step("Create issue " + issueName, () -> {
+            $("#issue_title").setValue(issueName);
             $(withText("Submit new issue")).click();
         });
         step("Verify issue is created with correct name", () -> {
@@ -65,7 +65,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
             $(".header-search-input").setValue(repository).pressEnter();
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();
-            $(withText(issue_name)).should(Condition.exist);
+            $(withText(issueName)).should(Condition.exist);
         });
     }
 }
