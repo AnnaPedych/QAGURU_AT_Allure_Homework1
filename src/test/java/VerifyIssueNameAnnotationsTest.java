@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
@@ -48,7 +49,8 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
 
         @Step("Search for repository {repository}")
         public void searchForRepository(String repository) {
-            $(".header-search-input").setValue(repository).pressEnter();}
+            $(".header-search-input").setValue(repository).pressEnter();
+        }
 
         @Step("Open repository {repository}")
         public void openRepository(String repository) {
@@ -70,12 +72,14 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
             $("[role=dialog]").$(withText("Sign in")).click();
             $("[name=login]").setValue(login);
             $("[name=password]").setValue(password);
-            $("[value='Sign in']").click();}
+            $("[value='Sign in']").click();
+        }
 
         @Step("Create issue {issueName}")
         public void createIssue(String issueName) {
             $("#issue_title").setValue(issueName);
-            $(withText("Submit new issue")).click();}
+            $(withText("Submit new issue")).click();
+        }
 
         @Step("Verify issue is created with correct name")
         public void verifyIssueIsCreatedWithCorrectName(String repository, String issueName) {
@@ -83,6 +87,7 @@ public class VerifyIssueNameAnnotationsTest extends TestBase {
             $(".header-search-input").setValue(repository).pressEnter();
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();
-            $(withText(issueName)).should(Condition.visible);}
+            $(withText(issueName)).should(Condition.visible);
+        }
     }
 }

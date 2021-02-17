@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class VerifyIssueNameSelenideTest extends TestBase {
     Faker faker = new Faker();
-    String  login = "AnnaPedych-testaccount",
+    String login = "AnnaPedych-testaccount",
             password = "Qaguru123",
             repository = "AnnaPedych/QAGURU_AT_Allure_Homework1",
             issueName = faker.harryPotter().character();
