@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class verifyIssueNameAnnotationsTest extends testBase {
+public class VerifyIssueNameAnnotationsTest extends TestBase {
 
     Faker faker = new Faker();
     private static final String base_url = "https://github.com/";
@@ -31,7 +31,7 @@ public class verifyIssueNameAnnotationsTest extends testBase {
     @DisplayName("Issue created after login")
 
     public void createAndCheckIssueTest() {
-        final baseStepsForAnnotationStyle steps = new baseStepsForAnnotationStyle();
+        final BaseStepsForAnnotationStyle steps = new BaseStepsForAnnotationStyle();
         steps.openMainPage(base_url);
         steps.searchForRepository(repository);
         steps.openRepository(repository);
@@ -42,7 +42,7 @@ public class verifyIssueNameAnnotationsTest extends testBase {
         steps.verifyIssueIsCreatedWithCorrectName(base_url, repository, issue_name);
     }
 
-    public static class baseStepsForAnnotationStyle {
+    public static class BaseStepsForAnnotationStyle {
         @Step("Open main page")
         public void openMainPage(final String base_url) {
             open(base_url);

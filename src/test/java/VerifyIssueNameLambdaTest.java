@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.parameter;
 import static io.qameta.allure.Allure.step;
 
-public class verifyIssueNameLambdaTest extends testBase {
+public class VerifyIssueNameLambdaTest extends TestBase {
     Faker faker = new Faker();
     private static final String base_url = "https://github.com/";
     String login = "AnnaPedych-testaccount",
