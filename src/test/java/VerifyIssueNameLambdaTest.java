@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anything;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
@@ -26,7 +27,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
 
     @Test
     @Owner("AnnaPedych")
-    @Tags({@Tag("web"), @Tag("homework")})
+    @Tags({@Tag("web"), @Tag("lambda")})
 
     @Feature("Issues")
     @Story("Issue creation security")
@@ -60,6 +61,7 @@ public class VerifyIssueNameLambdaTest extends TestBase {
             $(By.linkText(repository)).click();
             $(withText("Issues")).click();
             $(withText(issueName)).should(Condition.visible);
+            assertThat(withText(issueName), anything());
         });
     }
 }
